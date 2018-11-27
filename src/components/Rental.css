@@ -1,0 +1,58 @@
+.App {
+  text-align: center;
+}
+
+.App-input {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.leaseId {
+  padding-right:10px;
+}
+
+th {
+  padding: 10px;
+  margin-right: 40px;
+  border-width: 1px;
+  border-style: double dashed;
+  border-bottom: 1px double;
+}
+
+td {
+  padding: 5px 10px;
+  margin-right: 40px;
+  text-align: left;
+  border-width: 1px;
+  border-style: none dashed;
+}
+
+table {
+  border-width: 1px;
+  border-style: double dashed double dashed;
+  border-spacing: 2px;
+  margin: 50px auto;
+  margin-bottom: 90px;
+  border-collapse: separate;
+  border-spacing: 2px;
+  width: 50%;
+}
+
+
+tr:nth-child(1) td {
+  border-top: 1px solid black;
+}
+
+tr:last-child td {
+  border-bottom: 1px solid black;
+}
+
+.right {
+  text-align: right;
+}
+
+.error {
+  color: red;
+  font-size: 150%
+}
+

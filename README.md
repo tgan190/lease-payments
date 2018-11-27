@@ -1,3 +1,86 @@
+Overview of application:
+
+This application provides an online report of the past and upcoming rental 
+payments for a leaseID with a given start-date and end-date.
+
+The report calculates the intervals for rent payment based on the frequency 
+of payments (weekly, fortnightly, or monthly) and payment day (day of the week)
+specified in the lease.  
+
+The first payment interval would be from the start date of the lease and the toDate for the interval would be one day before the payment day.  Subsequent intervals would be computed based on the frequency and the payment day. The final payment would cover all remaining days which maybe less than or equal to the number of days for the specified frequency, till the end-date.
+
+The payment amount is calculated based on the weekly rent specified in the 
+lease and the number of days for each computed interval.
+
+
+Dependencies:
+The application uses the leaseID input by the user to fetch the relevant lease
+details from a server using the following url:
+
+'https://hiring-task-api.herokuapp.com/v1/leases/:id'
+
+The lease details provided by the server are as follows:
+
+The API always responds in JSON format which contains the following data:
+
+Name        Type                            Description
+id          string                          Lease id
+start_date  string                          Start of the lease
+end_date    string                          End of the lease
+rent        number                          Weekly rent amount
+frequency   weekly | fortnightly | monthly  Payment frequency
+payment_day monday | tuesday | wednesday |  Payment day in the week
+                    thursday | friday
+
+
+Below is an example output:
+{
+“id”: 123,
+“start_date”: “2018-07-12”,
+“end_date”: “2018-11-17”,
+“rent”: 545,
+“frequency”: “weekly”,
+“payment_day”: “wednesday”
+}
+
+Unhappy paths:
+Error handling is in place for the following:
+1) Ensure that leaseId is filled in - this is enforced by making it a required field.
+2) In the event the leaseID fails to find a match in the server, 
+an error will be output on the page.
+3) In the event, the url to fetch lease details from the server fails, an error will be output on the page.
+
+
+Testing:
+
+Automated unit testing has been included under the src/tests folder.
+Three scenarios have been setup in 3 separate files to test weekly, fortnightly 
+and monthly payments.
+
+Security
+In a real application, we might want to constrain users from keying in any leaseId
+and browsing through information that is not pertaining to their current lease.
+One way might be to require that users also key in the start-date for a leaseId entered
+and the application can fetch the lease details using the url provided and validate the start-date fetched against what the user has entered,  If it doesn't match, then do not 
+show the rental paymemt list.  This will discourage users from trying to browse the database and look at other lease details.
+
+Alternatively, we can validate against a list of leaseIds if stored in the user's profile.
+
+
+Architecture:
+The application uses React and create-react-app to simplify the setup.  The React components are all located in the components folder.  All the componenets for this App have names starting with Rental.  
+
+Supporting functions are placed in the utility folder.  They include the functions for date manipulation and functions for deriving the rows for all the payment intervals associated with a lease. 
+
+The application state is centrally kept in the RentalMain component which drives the top level display including a form for the input of leaseID, error messages and the high level display control for the rent payment table.  The RentalPayments component handles the display for the table header and the high level display for the table body for rental payments.  The RentalRow component handles the display for an individual row of rental payment interval.
+
+The application uses a leaseId input by the user to retrieve the lease details from a server using the dynamic url provided with the leaseID as part of the url.
+The lease details is return in a JSON format.  No credentials are required.
+
+How to run:  
+
+Please follow the instrauction provided below for running the application in development mode and test mode.  For production deployment, this new feature would need to be integrated with the existing lease management app, further tested and build for production.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
