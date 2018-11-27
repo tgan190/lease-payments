@@ -79,6 +79,13 @@ The lease details is return in a JSON format.  No credentials are required.
 
 How to run:  
 
+Assuming you have an up-to-date version of nodejs and npm installed,
+Create a project folder and download the source codes from github:
+https://github.com/tgan190/lease-payments
+After unziping, do this:
+npm install 
+
+This will install React and all required software into the project directory.
 Please follow the instrauction provided below for running the application in development mode and test mode.  For production deployment, this new feature would need to be integrated with the existing lease management app, further tested and build for production.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
