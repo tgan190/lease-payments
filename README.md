@@ -82,7 +82,9 @@ How to run:
 Assuming you have an up-to-date version of nodejs and npm installed,
 Create a project folder and download the source codes from github:
 https://github.com/tgan190/lease-payments
-After unziping, do this:
+After unziping, copy the source codes to the project folder.  
+Make sure that you are in the project folder, otherwise, cd to the folder
+and run:
 npm install 
 
 This will install React and all required software into the project directory.
